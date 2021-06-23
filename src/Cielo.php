@@ -29,11 +29,11 @@ class Cielo
     /**
      * @param \Illuminate\Foundation\Application $app
      */
-    public function __construct($app)
+    public function __construct($app, $cielo_merchant_id, $cielo_merchant_key, $cielo_enviroment)
     {
         $this->app         = $app;
-        $this->merchant    = new Merchant(config('cielo.merchant_id'), config('cielo.merchant_key'));
-        $this->environment = config('cielo.environment') == 'production' ? Environment::production() : Environment::sandbox();
+        $this->merchant    = new Merchant($cielo_merchant_id, $cielo_merchant_key);
+        $this->environment = $cielo_enviroment == 'production' ? Environment::production() : Environment::sandbox();
     }
 
     /**
